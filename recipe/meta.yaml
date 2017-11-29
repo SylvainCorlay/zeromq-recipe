@@ -1,0 +1,62 @@
+package:
+    name: zeromq
+    version: 4.2.1
+source:
+    fn: zeromq-4.2.1.tar.gz
+    patches:
+        - 0001-Windows-cmake-build-fixed.patch
+        - 0002-CPack-option-and-.txt-files-installation-dir.patch
+        - 0003-cmake-install-config-file.patch
+        - 0004-INSTALLATION-instructions.patch
+        - 0005-cmake-install-on-linux-fixed.patch
+        - 0006-Problem-name-of-static-library-generated-by-cmake-di.patch
+        - 0007-Problem-cmake-artefacts-different-from-make-generate.patch
+        - 0008-CMake-static-library-output-does-not-match-ZeroMQ-Co.patch
+    sha256: 27d1e82a099228ee85a7ddb2260f40830212402c605a4a10b5e5498a7e0e9d03
+    url: https://github.com/zeromq/libzmq/releases/download/v4.2.1/zeromq-4.2.1.tar.gz
+build:
+    features:
+        - vc14 # [win and py36]
+    noarch: ''
+    noarch_python: false
+    number: '0'
+    string: '0'
+    skip:  true  # [py<36]
+
+requirements:
+    build:
+        - cmake
+        - toolchain
+        - libsodium 1.0.3 0
+        - python
+        - gcc-7                       # [linux and not armv7l]
+    run:
+        - libsodium
+        - vs2015_runtime >=14.0.25420 # [win]
+        - libgcc-7                    # [linux and not armv7l]
+test:
+    commands:
+        - if exist %LIBRARY_LIB%\libzmq-mt-s-4_2_1.lib (exit 0) else (exit 1)                           # [win]
+        - if exist %LIBRARY_BIN%\libzmq-mt-4_2_1.dll (exit 0) else (exit 1)                             # [win]
+        - if exist %LIBRARY_LIB%\libzmq-mt-4_2_1.lib (exit 0) else (exit 1)                             # [win]
+        - if exist %LIBRARY_BIN%\libzmq.dll (exit 0) else (exit 1)                                      # [win]
+        - if exist %LIBRARY_LIB%\libzmq.lib (exit 0) else (exit 1)                                      # [win]
+        - if exist %LIBRARY_PREFIX%\share\cmake\ZeroMQ\ZeroMQConfig.cmake (exit 0) else (exit 1)        # [win]
+        - if exist %LIBRARY_PREFIX%\share\cmake\ZeroMQ\ZeroMQConfigVersion.cmake (exit 0) else (exit 1) # [win]
+        - test -f ${PREFIX}/lib/libzmq.a                                                                # [not win]
+        - test -f ${PREFIX}/lib/libzmq.so                                                               # [not win]
+        - test -f ${PREFIX}/lib/libzmq.so.5                                                             # [not win]
+        - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfig.cmake                                       # [not win]
+        - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfigVersion.cmake                                # [not win]
+about:
+    home: http://zeromq.org
+    license: LGPL 3
+    summary: A high-performance asynchronous messaging library.
+extra:
+    final: true
+    recipe-maintainers:
+        - jakirkham
+        - minrk
+        - SylvainCorlay
+        - JohanMabille
+        - gouarin
