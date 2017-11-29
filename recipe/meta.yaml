@@ -43,11 +43,13 @@ test:
         - if exist %LIBRARY_LIB%\libzmq.lib (exit 0) else (exit 1)                                      # [win]
         - if exist %LIBRARY_PREFIX%\share\cmake\ZeroMQ\ZeroMQConfig.cmake (exit 0) else (exit 1)        # [win]
         - if exist %LIBRARY_PREFIX%\share\cmake\ZeroMQ\ZeroMQConfigVersion.cmake (exit 0) else (exit 1) # [win]
-        - test -f ${PREFIX}/lib/libzmq.a                                                                # [not win]
-        - test -f ${PREFIX}/lib/libzmq.so                                                               # [not win]
-        - test -f ${PREFIX}/lib/libzmq.so.5                                                             # [not win]
-        - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfig.cmake                                       # [not win]
-        - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfigVersion.cmake                                # [not win]
+        - test -f ${PREFIX}/lib/libzmq.a                                  # [unix]
+        - test -f ${PREFIX}/lib/libzmq.so                                 # [linux]
+        - test -f ${PREFIX}/lib/libzmq.so.5                               # [linux]
+        - test -f ${PREFIX}/lib/libzmq.dylib                              # [osx]
+        - test -f ${PREFIX}/lib/libzmq.dylib.5                            # [osx]
+        - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfig.cmake         # [unix]
+        - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfigVersion.cmake  # [unix]
 about:
     home: http://zeromq.org
     license: LGPL 3
