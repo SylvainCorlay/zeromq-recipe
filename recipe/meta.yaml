@@ -12,15 +12,16 @@ source:
         - 0006-Problem-name-of-static-library-generated-by-cmake-di.patch
         - 0007-Problem-cmake-artefacts-different-from-make-generate.patch
         - 0008-CMake-static-library-output-does-not-match-ZeroMQ-Co.patch
-    sha256: 27d1e82a099228ee85a7ddb2260f40830212402c605a4a10b5e5498a7e0e9d03
+    sha256: 5b23f4ca9ef545d5bd3af55d305765e3ee06b986263b31967435d285a3e6df6b
     url: https://github.com/zeromq/libzmq/releases/download/v4.2.2/zeromq-4.2.2.tar.gz
 build:
     features:
+        - cling
         - vc14 # [win and py36]
     noarch: ''
     noarch_python: false
     number: '0'
-    string: '0'
+    string: 'cling_0'
     skip:  true  # [py<36]
 
 requirements:
@@ -29,8 +30,10 @@ requirements:
         - toolchain
         - libsodium 1.0.3 0
         - python
+        - cling-patches
         - gcc-7                       # [linux and not armv7l]
     run:
+        - cling-patches
         - libsodium
         - vs2015_runtime >=14.0.25420 # [win]
         - libgcc-7                    # [linux and not armv7l]
