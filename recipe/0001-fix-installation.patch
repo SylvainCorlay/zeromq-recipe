@@ -5,7 +5,9 @@ Subject: [PATCH] fix installation
 
 ---
  CMakeLists.txt | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ ZeroMQConfig.cmake.in | 15 +++++++++++++++++++++++++
+ 2 files changed, 21 insertions(+), 5 deletions(-)
+ create mode 100644 ZeroMQConfig.cmake.in
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 index a14e59e5..793f5979 100644
@@ -32,19 +34,11 @@ index a14e59e5..793f5979 100644
    if (WITH_OPENPGM)
 diff --git a/ZeroMQConfig.cmake.in b/ZeroMQConfig.cmake.in
 new file mode 100644
-index 0000000..bfdb981
+index 00000000..2a8e8a4e
 --- /dev/null
 +++ b/ZeroMQConfig.cmake.in
-+@@ -0,0 +1,25 @@
+@@ -0,0 +1,15 @@
 +# ZeroMQ cmake module
-+#
-+# The following import targets are created
-+#
-+# ::
-+#
-+#   libzmq-static
-+#   libzmq
-+#
 +# This module sets the following variables in your project::
 +#
 +#   ZeroMQ_FOUND - true if ZeroMQ found on the system
@@ -54,13 +48,11 @@ index 0000000..bfdb981
 +
 +@PACKAGE_INIT@
 +
-+if(NOT TARGET libzmq AND NOT TARGET libzmq-static)
-+  include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
-+
-+  get_target_property(@PROJECT_NAME@_INCLUDE_DIR libzmq INTERFACE_INCLUDE_DIRECTORIES)
-+  get_target_property(@PROJECT_NAME@_LIBRARY libzmq LOCATION)
-+  get_target_property(@PROJECT_NAME@_STATIC_LIBRARY libzmq-static LOCATION)
-+endif()
++set(PN ZeroMQ)
++set_and_check(${PN}_INCLUDE_DIR "${PACKAGE_PREFIX_DIR}/@CMAKE_INSTALL_INCLUDEDIR@")
++set_and_check(${PN}_LIBRARY "${PACKAGE_PREFIX_DIR}/@CMAKE_INSTALL_LIBDIR@/@libzmq_file@")
++set_and_check(${PN}_STATIC_LIBRARY "${PACKAGE_PREFIX_DIR}/@CMAKE_INSTALL_LIBDIR@/@libzmq_static_file@")
++check_required_components(${PN})
 -- 
 2.14.1
 

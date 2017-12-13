@@ -1,12 +1,12 @@
 package:
     name: zeromq
-    version: 4.2.2
+    version: 4.2.3
 source:
-    fn: zeromq-4.2.2.tar.gz
+    fn: zeromq-4.2.3.tar.gz
     patches:
         - 0001-fix-installation.patch
     sha256: 5b23f4ca9ef545d5bd3af55d305765e3ee06b986263b31967435d285a3e6df6b
-    url: https://github.com/zeromq/libzmq/releases/download/v4.2.2/zeromq-4.2.2.tar.gz
+    url: https://github.com/zeromq/libzmq/releases/download/v4.2.3/zeromq-4.2.3.tar.gz
 build:
     features:
         - cling
@@ -32,9 +32,9 @@ requirements:
         - libgcc-7                    # [linux and not armv7l]
 test:
     commands:
-        - if exist %LIBRARY_LIB%\libzmq-mt-s-4_2_2.lib (exit 0) else (exit 1)                           # [win]
-        - if exist %LIBRARY_BIN%\libzmq-mt-4_2_2.dll (exit 0) else (exit 1)                             # [win]
-        - if exist %LIBRARY_LIB%\libzmq-mt-4_2_2.lib (exit 0) else (exit 1)                             # [win]
+        - if exist %LIBRARY_LIB%\libzmq-mt-s-4_2_3.lib (exit 0) else (exit 1)                           # [win]
+        - if exist %LIBRARY_BIN%\libzmq-mt-4_2_3.dll (exit 0) else (exit 1)                             # [win]
+        - if exist %LIBRARY_LIB%\libzmq-mt-4_2_3.lib (exit 0) else (exit 1)                             # [win]
         - if exist %LIBRARY_BIN%\libzmq.dll (exit 0) else (exit 1)                                      # [win]
         - if exist %LIBRARY_LIB%\libzmq.lib (exit 0) else (exit 1)                                      # [win]
         - if exist %LIBRARY_PREFIX%\share\cmake\ZeroMQ\ZeroMQConfig.cmake (exit 0) else (exit 1)        # [win]
