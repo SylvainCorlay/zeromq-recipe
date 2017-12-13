@@ -3,7 +3,8 @@ package:
     version: 4.2.3
 source:
     fn: zeromq-4.2.3.tar.gz
-    #patches:
+    patches:
+        - 0001-remove-asciidoc.patch
     #    - 0001-fix-installation.patch
     sha256: 8f1e2b2aade4dbfde98d82366d61baef2f62e812530160d2e6d0a5bb24e40bc0
     url: https://github.com/zeromq/libzmq/releases/download/v4.2.3/zeromq-4.2.3.tar.gz
