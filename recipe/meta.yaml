@@ -6,7 +6,7 @@ source:
     patches:
         -   0001-remove-asciidoc.patch
     #    - 0001-fix-installation.patch
-    sha256: 8f1e2b2aade4dbfde98d82366d61baef2f62e812530160d2e6d0a5bb24e40bc0
+    sha256: b428c6cdf1df4b5cdcb3a6727c6ece85c7fb05d7907c532566a115b4dda113a8
     url: https://github.com/zeromq/libzmq/archive/v4.2.3.tar.gz
 build:
     features:
