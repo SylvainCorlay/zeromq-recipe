@@ -4,10 +4,10 @@ cmake -G "NMake Makefiles" -D WITH_DOC=OFF -D ENABLE_DRAFTS=OFF -D WITH_PERF_TOO
 if errorlevel 1 exit 1
 nmake install
 if errorlevel 1 exit 1
-script:
-copy /y %LIBRARY_BIN%\libzmq-mt-4*.dll %LIBRARY_BIN%\libzmq.dll
+
+copy /y %LIBRARY_BIN%\libzmq-mt-4*.dll /b %LIBRARY_BIN%\libzmq.dll
 if errorlevel 1 exit 1
-copy /y %LIBRARY_LIB%\libzmq-mt-s-4*.lib %LIBRARY_LIB%\libzmq.lib
+copy /y %LIBRARY_LIB%\libzmq-mt-4*.lib /b %LIBRARY_LIB%\libzmq.lib
 if errorlevel 1 exit 1
 
 .\bin\test_ancillaries
