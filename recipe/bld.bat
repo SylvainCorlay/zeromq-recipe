@@ -5,11 +5,6 @@ if errorlevel 1 exit 1
 nmake install
 if errorlevel 1 exit 1
 script:
-copy /y %LIBRARY_BIN%\libzmq-mt-4*.dll %LIBRARY_BIN%\libzmq.dll
-if errorlevel 1 exit 1
-copy /y %LIBRARY_LIB%\libzmq-mt-4*.lib %LIBRARY_LIB%\libzmq.lib
-if errorlevel 1 exit 1
-
 .\bin\test_ancillaries
 .\bin\test_atomics
 .\bin\test_base85
