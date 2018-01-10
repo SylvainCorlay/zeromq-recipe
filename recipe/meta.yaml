@@ -4,8 +4,9 @@ package:
 source:
     fn: zeromq-4.2.3.tar.gz
     patches:
-        -   0001-remove-asciidoc.patch
-    #    - 0001-fix-installation.patch
+        - 0001-remove-asciidoc.patch
+        - 0002-lrt-fix.patch
+        - 0003-windows-install.patch
     sha256: b428c6cdf1df4b5cdcb3a6727c6ece85c7fb05d7907c532566a115b4dda113a8
     url: https://github.com/zeromq/libzmq/archive/v4.2.3.tar.gz
 build:
@@ -14,7 +15,7 @@ build:
         - vc14 # [win and py36]
     noarch: ''
     noarch_python: false
-    number: '1'
+    number: '2'
     string: 'cling_1'
     skip:  true  # [py<36]
 
