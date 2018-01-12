@@ -15,8 +15,8 @@ build:
         - vc14 # [win and py36]
     noarch: ''
     noarch_python: false
-    number: '2'
-    string: 'cling_1'
+    number: '3'
+    string: 'cling_3'
     skip:  true  # [py<36]
 
 requirements:
