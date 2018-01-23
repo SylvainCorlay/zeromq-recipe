@@ -5,7 +5,7 @@ env:
   matrix:
   - CONDA_PY=36
   global:
-  - secure: oKRwPX7JKFn6Ru8FbsD5LcuVfR8ony1M/Ws243s2T8fRguVffQ16Rb8vlr+2U69pWeelyQLUKhesWzA9xIddishOye7kq6hxuoaa9VnIHIy+51V4wI7rGnTlG8BLXxQvo61IPxH6sW7MyIewCFrAOLUuviiPWiukC7PqP86ebVnEDP51Ej8C64dQ+1TcmcXsJHzOd2Ky4yIQ8BSNjo4Vlhfizh2s3cdXE/kgvVai0nYWMshtI+sqmZqvkO6CWcOJ1ZqkrdnFb7ERbmVEhYLbjiUg3DakQwift8ErScICuFoBy2YGkH4WWoAbCRQtzFaljWOnRimrSYX8wotqMkZ8V10z6VCiw/xmtA9hfN48fXusq2NkXweVcrTO8J13j6uJdsJEVze6RN5I/YHOkp/Orq1KUuQkfk2Hv6Jee14BmDui5UYqJh/Sr7odS/iz3c8D3/k87AwhbTFsvN1FuOHBrLSZtcuP4InmWPtxu8lRDMVXUJ79PdJgy8IklOdAn487CHS3j9DMXI6oGQRebi/xqOD9HNgTfkzlajLqCXxbAYOGIXOZ5gJPHwbi2l+iIpMexMU1hz8TNL1XtWVWWjOkGRxGrM2tso0R1WkXbwDcQUe2ZkBeCQhrzF8BrEe0LDgnzAD5LriDs6cnQK3GWOwie3T9clU/QGAdMVcSVgov5b4=
+  - secure: nnHLEidqdMgrU//VVwEgaC/hIz+WQht86YssL0jKPxGRWPLxCVQpwjJv35NcCiJHgNMTpIpTWSoKQ4CaSZ96CZL7meBtvV+2wNar0OCdqRLZUb/mqA/BX4yFe4Jdv/FZ1AhRLV/5XDeazYyVTHmly5stoc2aMFICwkg5orU4/jhfHov9cEN5smUpIJmodrAdhex9a/o1JMvzlnPSsYKn1wmIt92nA8Ilb3jiAJ6dnReJK2WaIcDF3HhoTgI0UII/O+XOYODfXJLLJyx41u4mmTpKps2cHVKxsXKi8feuc6yAkkmwSqe4Rvk1MrIVpQXC7qAw5jcaoIvy5SxHkZzOwbeSCbOaDyVQBqXJqHjw7nOwZpt3DCqeofKKRSSaQJBnvz9dLuPqvjCZPT3t0GysQMmVo9Om7NyHt8ES2HuddwZSS49PP9RL0rnLHQcFk4bdtRzCgXvgU8t5DlXwMecNcFIHt9VG/W5xSWNQkjwpsIqUXJdMJ9aujmthpSOooGsO5qd99Phn/+XeuZNpZT3NEuD6IHyNhNBIm0EvLmM+W8UeK+g7Nn4kX1OEy/TsKMPWiLvmEKOxhGCJppQjmfitaotdYWdC83W/R59y5CcN8U0Meo0UGz/0wzuWwLzwiDM1oU4QXhE/EWatZSyQJr4dQ/UsPsUA9q/Z+FyMbmA7mTQ=
 before_install:
 - |
   (curl https://raw.githubusercontent.com/conda-forge/conda-forge-build-setup-feedstock/master/recipe/ff_ci_pr_build.py | \
@@ -32,9 +32,10 @@ install:
   conda config --remove channels defaults
   conda config --add channels defaults
   conda config --add channels conda-forge
+  conda config --add channels QuantStack
   conda config --set show_channel_urls true
   conda install --yes --quiet conda-forge-build-setup
   source run_conda_forge_build_setup
 script:
 - conda build ./recipe
-- upload_or_check_non_existence ./recipe gouarin --channel=main
+- upload_or_check_non_existence ./recipe QuantStack --channel=main
