@@ -3,9 +3,7 @@
 # "conda smithy rerender".
 
 environment:
-
   BINSTAR_TOKEN:
-    # The BINSTAR_TOKEN secure variable.
     secure: GM8zcUvE63jeSWWeNaQgmTTz0/t+Ef90QsRpbR7QhNQc3vt9kMC4DKAGHn4kJ3TD
 
   matrix:
