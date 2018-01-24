@@ -39,6 +39,7 @@ requirements:
         - libsodium
         - vs2015_runtime >=14.0.25420 # [win]
         - libgcc-7                    # [linux and not armv7l]
+
 test:
     commands:
         - if exist %LIBRARY_LIB%\libzmq-mt-s-4_2_3.lib (exit 0) else (exit 1)                           # [win]
@@ -53,10 +54,12 @@ test:
         - test -f ${PREFIX}/lib/libzmq.dylib.5                            # [osx]
         - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfig.cmake         # [unix]
         - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfigVersion.cmake  # [unix]
+
 about:
     home: http://zeromq.org
     license: LGPL 3
     summary: A high-performance asynchronous messaging library.
+
 extra:
     final: true
     recipe-maintainers:
