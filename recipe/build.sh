@@ -2,8 +2,6 @@
 set -euo pipefail
 
 if [[ `uname` == Darwin ]]; then
-  export MACOSX_DEPLOYMENT_TARGET=10.7
-  export LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
   export LDFLAGS="-Wl,-rpath,$PREFIX/lib $LDFLAGS"
 fi
 
