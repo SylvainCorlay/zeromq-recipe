@@ -29,7 +29,11 @@ build:
 
 requirements:
     build:
-        - cmake
+        - cmake                        # [win]
+        - automake                     # [osx]
+        - autoconf                     # [osx]		
+        - libtool                      # [osx]
+        - pkg-config                   # [osx]
         - toolchain
         - libsodium
         - python
