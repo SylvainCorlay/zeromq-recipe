@@ -15,17 +15,17 @@ source:
     - 0002-lrt-fix.patch
     - 0003-windows-install.patch
     - 0004-windows-cmake.patch
-    - 0005-osx-test.patch           # [osx]
+    - 0005-osx-test.patch  # [osx]
 
 build:
     features:
         - cling
-        - vc14 # [win and py36]
+        - vc14  # [win]
     noarch: ''
     noarch_python: false
-    number: '1'
-    string: 'cling_1'
-    skip:  true  # [py<36]
+    number: '2'
+    string: 'cling_2'
+    skip:  true  # [win and py<35]
 
 requirements:
     build:
@@ -34,12 +34,12 @@ requirements:
         - libsodium
         - python
         - cling-patches
-        - gcc-7                       # [linux and not armv7l]
+        - gcc-7                        # [linux and not armv7l]
     run:
         - cling-patches
         - libsodium
-        - vs2015_runtime >=14.0.25420 # [win]
-        - libgcc-7                    # [linux and not armv7l]
+        - vs2015_runtime >=14.0.25420  # [win]
+        - libgcc-7                     # [linux and not armv7l]
 
 test:
     commands:
