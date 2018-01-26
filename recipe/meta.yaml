@@ -56,7 +56,7 @@ test:
         - test -f ${PREFIX}/lib/libzmq.so                                 # [linux]
         - test -f ${PREFIX}/lib/libzmq.so.5                               # [linux]
         - test -f ${PREFIX}/lib/libzmq.dylib                              # [osx]
-        - test -f ${PREFIX}/lib/libzmq.dylib.5                            # [osx]
+        - test -f ${PREFIX}/lib/libzmq.5.dylib                            # [osx]
         - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfig.cmake         # [unix]
         - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfigVersion.cmake  # [unix]
 
