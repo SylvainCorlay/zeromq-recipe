@@ -30,7 +30,7 @@ build:
 requirements:
     build:
         - cmake                        # [win]
-        - automake >=1.14,<1.15        # [osx]
+        - automake                     # [osx]
         - autoconf                     # [osx]		
         - libtool                      # [osx]
         - pkg-config                   # [osx]
