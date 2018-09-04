@@ -1,6 +1,6 @@
 {% set name = "zeromq" %}
-{% set version = "4.2.3" %}
-{% set sha256 = "8f1e2b2aade4dbfde98d82366d61baef2f62e812530160d2e6d0a5bb24e40bc0" %}
+{% set version = "4.2.5" %}
+{% set sha256 = "cc9090ba35713d59bb2f7d7965f877036c49c5558ea0c290b0dcc6f2a17e489f" %}
 
 package:
   name: {{ name|lower }}
@@ -11,29 +11,24 @@ source:
   url: https://github.com/zeromq/libzmq/releases/download/v{{ version }}/zeromq-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    - 0001-remove-ascii-doc.patch
-    - 0002-lrt-fix.patch
+    - rm-clang-format.patch
     - 0003-windows-install.patch
-    - 0004-windows-cmake.patch
     - 0005-osx-test.patch  # [osx]
 
 build:
     features:
         - cling
         - vc14  # [win]
-    noarch: ''
-    noarch_python: false
-    number: '3'
-    string: 'cling_3'
-    skip:  true  # [win and py<35]
+    number: 0
+    string: 'cling_0'
 
 requirements:
     build:
         - cmake                        # [win]
         - automake                     # [osx]
-        - autoconf                     # [osx]		
+        - autoconf                     # [osx]
         - libtool                      # [osx]
-        - pkg-config                   # [osx]
+        - pkg-config                   # [unix]
         - toolchain
         - libsodium
         - python
@@ -47,18 +42,18 @@ requirements:
 
 test:
     commands:
-        - if exist %LIBRARY_LIB%\libzmq-mt-s-4_2_3.lib (exit 0) else (exit 1)                           # [win]
-        - if exist %LIBRARY_BIN%\libzmq-mt-4_2_3.dll (exit 0) else (exit 1)                             # [win]
-        - if exist %LIBRARY_LIB%\libzmq-mt-4_2_3.lib (exit 0) else (exit 1)                             # [win]
-        - if exist %LIBRARY_PREFIX%\share\cmake\ZeroMQ\ZeroMQConfig.cmake (exit 0) else (exit 1)        # [win]
-        - if exist %LIBRARY_PREFIX%\share\cmake\ZeroMQ\ZeroMQConfigVersion.cmake (exit 0) else (exit 1) # [win]
+        - if exist %LIBRARY_LIB%\libzmq-mt-s-4_2_5.lib (exit 0) else (exit 1)                           # [win]
+        - if exist %LIBRARY_BIN%\libzmq-mt-4_2_5.dll (exit 0) else (exit 1)                             # [win]
+        - if exist %LIBRARY_LIB%\libzmq-mt-4_2_5.lib (exit 0) else (exit 1)                             # [win]
+        - if exist %LIBRARY_PREFIX%\lib\cmake\ZeroMQ\ZeroMQConfig.cmake (exit 0) else (exit 1)        # [win]
+        - if exist %LIBRARY_PREFIX%\lib\cmake\ZeroMQ\ZeroMQConfigVersion.cmake (exit 0) else (exit 1) # [win]
         - test -f ${PREFIX}/lib/libzmq.a                                  # [unix]
         - test -f ${PREFIX}/lib/libzmq.so                                 # [linux]
         - test -f ${PREFIX}/lib/libzmq.so.5                               # [linux]
         - test -f ${PREFIX}/lib/libzmq.dylib                              # [osx]
         - test -f ${PREFIX}/lib/libzmq.5.dylib                            # [osx]
-        - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfig.cmake         # [unix]
-        - test -f ${PREFIX}/share/cmake/ZeroMQ/ZeroMQConfigVersion.cmake  # [unix]
+        - test -f ${PREFIX}/lib/cmake/ZeroMQ/ZeroMQConfig.cmake           # [unix]
+        - test -f ${PREFIX}/lib/cmake/ZeroMQ/ZeroMQConfigVersion.cmake    # [unix]
 
 about:
     home: http://zeromq.org
