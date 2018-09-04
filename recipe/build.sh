@@ -5,18 +5,20 @@ if [[ `uname` == Darwin ]]; then
   export LDFLAGS="-Wl,-rpath,$PREFIX/lib $LDFLAGS"
 fi
 
+
 if [[ `uname` == Darwin ]]; then
 ./autogen.sh
 fi
-./configure --prefix="$PREFIX" --with-libsodium="$PREFIX"
-make check
+
+./configure --prefix="$PREFIX" --with-libsodium
 make -j${CPU_COUNT}
+make check
 make install
 
 # Generate CMake files, so downstream packages can use `find_package(ZeroMQ)`,
 # which is normally only available when libzmq is itself installed with CMake
 
-CMAKE_DIR="$PREFIX/share/cmake/ZeroMQ"
+CMAKE_DIR="$PREFIX/lib/cmake/ZeroMQ"
 mkdir -p "$CMAKE_DIR"
 
 cat << EOF > "$CMAKE_DIR/ZeroMQConfig.cmake"
